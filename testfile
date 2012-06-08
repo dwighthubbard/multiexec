@@ -1,0 +1,55 @@
+test1 echo hello
+test2 sleep 15;echo foo
+test3 echo there
+test4 ls
+test5 du -s -k /usr
+test6 du -s -k /var
+test7 echo sleep 90;sleep 90
+test8 echo sleep 150;sleep 150
+test9 echo sleep 80;sleep 80;echo 80
+test10 echo sleep 160;sleep 160
+test11 echo sleep 120;sleep 120
+test12 echo sleep 10;sleep 10;echo 10
+test13 echo goober
+test14 df -kh
+test15 echo "bart simpson"
+uname1 uname -a
+uname2 uname -a
+uname3 uname -a
+uname4 uname -a
+uname5 uname -a
+uname6 uname -a
+uname7 uname -a
+uname8 uname -a
+uname9 uname -a
+uname10 uname -a
+uname11 uname -a
+uname12 uname -a
+uname13 uname -a
+uname14 uname -a
+uname15 uname -a
+uname16 uname -a
+uname17 uname -a
+uname18 uname -a
+uname19 uname -a
+uname20 uname -a
+uname21 uname -a
+uname22 uname -a
+uname23 uname -a
+uname24 uname -a
+uname25 uname -a
+uname26 uname -a
+uname27 uname -a
+uname28 uname -a
+uname29 uname -a
+uname30 uname -a
+uname31 uname -a
+uname32 uname -a
+uname33 uname -a
+uname34 uname -a
+uname35 uname -a
+uname36 uname -a
+uname37 uname -a
+uname38 uname -a
+uname39 uname -a
+uname40 uname -a
