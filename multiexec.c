@@ -19,6 +19,7 @@
 #define OUTPUTVERBOSE 1
 #define SUMMARY 0
 
+// Structure information about our child process
 struct childprocess 
 {
   pid_t pid;
@@ -35,6 +36,7 @@ struct childprocess
   struct childprocess *prev;
 };
 
+// Set up the head/tails of our two lists
 struct childprocess head;
 struct childprocess tail;
 struct childprocess failedhead;
@@ -48,6 +50,7 @@ unsigned long childcount=0;
 
 void dcreatechildnode(struct childprocess *temp)
 {
+// Clean up the child process defined by this childnode
 #ifdef DEBUG
   printf("entering dcreatechild\n");
 #endif
@@ -88,6 +91,9 @@ void dcreatechildnode(struct childprocess *temp)
 
 struct childprocess *createchildnode(time_t timeout,char *label,char *command)
 {
+  // Create a child process node
+  // Returns a child node
+  // Returns NULL on error
   struct childprocess *temp;
   
 #ifdef DEBUG
@@ -137,6 +143,7 @@ struct childprocess *createchildnode(time_t timeout,char *label,char *command)
 
 void forkchild(struct childprocess *node)
 {
+  // Fork and execute a child ndoe
   char outfile[]="/tmp/multiexec.000000.000000";
   int descin;
   int descout;
@@ -248,6 +255,8 @@ void forkchild(struct childprocess *node)
 
 void removelinefeeds(char *line)
 {
+  // Remove linefeeds from a line
+  // Equivalent to python strip() or perl chomp()
   int lenline;
   int count;
   
@@ -305,6 +314,7 @@ char *getlabel(char *buffer,char *label)
 
 void newlist(struct childprocess *head, struct childprocess *tail)
 {
+  // Create a new list
   head->next=tail;
   head->prev=head;
   tail->next=tail;
@@ -315,6 +325,7 @@ void newlist(struct childprocess *head, struct childprocess *tail)
 
 void appendprocess(struct childprocess *process,struct childprocess *tail)
 {
+  // Append a process to a list
   tail->prev->next=process;
   process->prev=tail->prev;
   process->next=tail;
@@ -324,6 +335,7 @@ void appendprocess(struct childprocess *process,struct childprocess *tail)
 
 void removeprocess(struct childprocess *process)
 {
+  // Remove a process from a list
   if (process == &head)
   {
     printf("removeprocess: attempt to remove the head node\n");
@@ -343,6 +355,7 @@ void removeprocess(struct childprocess *process)
 
 struct childprocess *findnodebypid(struct childprocess *head,pid_t pid)
 {
+  // Find a process node in a list by it's pid
   struct childprocess *node;
   
 #ifdef DEBUG
@@ -368,12 +381,14 @@ struct childprocess *findnodebypid(struct childprocess *head,pid_t pid)
 
 int emptylist(struct childprocess *head)
 {
+  // Check if a list is empty
   if (head->next->next == head->next) return(1);
   return(0);
 }
 
 void killallchildren(struct childprocess *head, struct childprocess *tail)
 {
+  // Iterate through the list and kill all the child processes
   struct childprocess *node;
   struct childprocess *next;
   
@@ -392,6 +407,7 @@ void killallchildren(struct childprocess *head, struct childprocess *tail)
 
 void printlist(struct childprocess *head)
 {
+  // Dump the info of all the processes in a list
 #ifdef DEBUG  
   node=head->next;
   while (node != node->next)
@@ -405,6 +421,7 @@ void printlist(struct childprocess *head)
 /* Print all output from a process node (if any) */
 void printoutput(struct childprocess *node,int format,int timeout)
 {
+  // Print the process output
   FILE *fh;
   char buffer[8192];
 
